@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.example.fragmentnavigationdemo.databinding.FragmentQuestionBinding
 
@@ -81,7 +83,10 @@ class QuestionFragment : Fragment() {
                     setQuestion()
 
                 } else {
-                    Navigation.findNavController(it).navigate(R.id.action_questionFragment_to_thankyouFragment)
+                    val percentage : Float = (score/2.0F) * 100
+                    val action : NavDirections =  QuestionFragmentDirections.actionQuestionFragmentToThankyouFragment(percentage)
+
+                    Navigation.findNavController(it).navigate(action)
                 }
             }else{
                 Toast.makeText(context, "Please select answer", Toast.LENGTH_LONG).show()
